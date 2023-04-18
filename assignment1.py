@@ -1,10 +1,10 @@
-# Name:
-# OSU Email:
+# Name: Tyler Renn
+# OSU Email: rennt@oregonstate.edu
 # Course: CS261 - Data Structures
-# Assignment:
-# Due Date:
-# Description:
-
+# Assignment: A01
+# Due Date: 04/24/23 @ 11:59 PM
+# Description: 10 different Python functions that asses programming skills
+#              and different procedures needed to succeed in the class.
 
 import random
 from static_array import *
@@ -14,19 +14,19 @@ from static_array import *
 
 def min_max(arr: StaticArray) -> (int, int):
     """
-    TODO: Write this implementation
+    Find the minimum and maximum value in an array
     """
-    #Initialize min and max to first value in the array
+    # Initialize min and max to first value in the array
     min = max = arr[0]
 
-    #Compare values in array to determine min and max
+    # Compare values in array to determine min and max
     for i in range(1, arr.length()):
         if arr.get(i) < min:
             min = arr.get(i)
         elif arr.get(i) > max:
             max = arr.get(i)
 
-
+    # Return the min and max values of the array
     return (min,max)
 
 
@@ -36,7 +36,17 @@ def fizz_buzz(arr: StaticArray) -> StaticArray:
     """
     TODO: Write this implementation
     """
-    pass
+    newArr = arr
+
+    for i in range(1,newArr.length()):
+        if newArr.get(i) % 3 == 0 and newArr.get(i) % 5 == 0:
+            newArr.set(i,"fizzbuzz")
+        elif newArr.get(i) % 5 == 0:
+            newArr.set(i,"buzz")
+        elif newArr.get(i) % 3 == 0:
+            newArr.set(i,"fizz")
+
+    return newArr
 
 
 # ------------------- PROBLEM 3 - REVERSE -----------------------------------
