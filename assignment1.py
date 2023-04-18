@@ -34,17 +34,25 @@ def min_max(arr: StaticArray) -> (int, int):
 
 def fizz_buzz(arr: StaticArray) -> StaticArray:
     """
-    TODO: Write this implementation
+    Receives a StaticArray of int's and returns a new object with
+    content modified by divisibility factors
     """
-    newArr = arr
 
-    for i in range(1,newArr.length()):
-        if newArr.get(i) % 3 == 0 and newArr.get(i) % 5 == 0:
-            newArr.set(i,"fizzbuzz")
-        elif newArr.get(i) % 5 == 0:
-            newArr.set(i,"buzz")
-        elif newArr.get(i) % 3 == 0:
-            newArr.set(i,"fizz")
+    # Form a new array object with the length of the original
+    newArr = StaticArray(arr.length())
+
+    # Populate a new StaticArray object with contents of the original array
+    for i in range(arr.length()):
+        newArr.set(i, arr.get(i))
+
+    # Modify newArr object with these divisibility factors
+    for i in range(arr.length()-1):
+        if abs(newArr.get(i)) % 3 == 0 and abs(newArr.get(i)) % 5 == 0:
+            newArr.set(i, "fizzbuzz")
+        elif abs(newArr.get(i)) % 5 == 0:
+            newArr.set(i, "buzz")
+        elif abs(newArr.get(i)) % 3 == 0:
+            newArr.set(i, "fizz")
 
     return newArr
 
