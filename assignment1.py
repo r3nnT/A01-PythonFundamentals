@@ -46,7 +46,7 @@ def fizz_buzz(arr: StaticArray) -> StaticArray:
         newArr.set(i, arr.get(i))
 
     # Modify newArr object with these divisibility factors
-    for i in range(arr.length()-1):
+    for i in range(arr.length()):
         if abs(newArr.get(i)) % 3 == 0 and abs(newArr.get(i)) % 5 == 0:
             newArr.set(i, "fizzbuzz")
         elif abs(newArr.get(i)) % 5 == 0:
