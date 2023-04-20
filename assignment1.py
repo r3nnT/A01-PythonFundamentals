@@ -63,7 +63,20 @@ def reverse(arr: StaticArray) -> None:
     """
     TODO: Write this implementation
     """
-    pass
+
+    length = arr.length()
+
+    for i in range(length//2):
+        arr[i], arr[arr.length()-i-1] = arr[arr.length()-i-1], arr[i]
+        
+
+
+
+
+
+
+
+
 
 
 # ------------------- PROBLEM 4 - ROTATE ------------------------------------
