@@ -61,23 +61,14 @@ def fizz_buzz(arr: StaticArray) -> StaticArray:
 
 def reverse(arr: StaticArray) -> None:
     """
-    TODO: Write this implementation
+    Reverses the given array in place
     """
 
-    length = arr.length()
+    # Split the array in half
+    for i in range(arr.length()//2):
 
-    for i in range(length//2):
+        # Swap elements of the first half of the array with the second half
         arr[i], arr[arr.length()-i-1] = arr[arr.length()-i-1], arr[i]
-        
-
-
-
-
-
-
-
-
-
 
 # ------------------- PROBLEM 4 - ROTATE ------------------------------------
 
