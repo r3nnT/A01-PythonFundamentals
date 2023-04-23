@@ -74,18 +74,44 @@ def reverse(arr: StaticArray) -> None:
 
 def rotate(arr: StaticArray, steps: int) -> StaticArray:
     """
-    TODO: Write this implementation
+    Rotates an array based on the number steps
+    if steps is positive, array rotates to the right
+    if steps is negative, array rotates to the left
     """
-    pass
+
+    # Variables used to determine length, the new array and steps
+    length = arr.length()
+    newArr = StaticArray(length)
+    steps = steps % length
+
+    # For loop to rotate the array
+    for i in range(length):
+        if steps >= 0:
+            temp = (i + steps) % length
+        else:
+            temp = (i + steps + length) % length
+        newArr[temp] = arr[i]
+
+    return newArr
 
 
 # ------------------- PROBLEM 5 - SA_RANGE ----------------------------------
 
 def sa_range(start: int, end: int) -> StaticArray:
     """
-    TODO: Write this implementation
+    Receives 2 integers and returns an array that contains all the
+    consecutive integers (inclusive)
     """
-    pass
+
+    # Determine the length of the StaticArray and make one
+    length = abs(end - start) + 1
+    arr = StaticArray(length)
+
+    # Populate the array with the consecutive integers
+    for i in range(length):
+        arr[i] = start + i
+
+    return arr
 
 
 # ------------------- PROBLEM 6 - IS_SORTED ---------------------------------
@@ -202,7 +228,7 @@ if __name__ == "__main__":
     print(arr)
     for steps in [1, 2, 0, -1, -2, 28, -100, 2 ** 28, -2 ** 31]:
         space = " " if steps >= 0 else ""
-        print(f"{rotate(arr, steps)} {space}{steps}")
+        print(f"{rotate(arr, steps)} {space}{steps} {abs(steps) % arr.length()}")
     print(arr)
 
     print('\n# rotate example 2')
