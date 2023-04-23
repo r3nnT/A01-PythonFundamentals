@@ -120,7 +120,7 @@ def is_sorted(arr: StaticArray) -> int:
     """
     TODO: Write this implementation
     """
-    pass
+    
 
 
 # ------------------- PROBLEM 7 - FIND_MODE -----------------------------------
