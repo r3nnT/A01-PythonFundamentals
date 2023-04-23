@@ -104,12 +104,19 @@ def sa_range(start: int, end: int) -> StaticArray:
     """
 
     # Determine the length of the StaticArray and make one
+
     length = abs(end - start) + 1
     arr = StaticArray(length)
 
     # Populate the array with the consecutive integers
     for i in range(length):
-        arr[i] = start + i
+
+        if end > start:
+            arr[i] = start + i
+
+        else:
+            arr[i] = start - i
+
 
     return arr
 
@@ -120,7 +127,7 @@ def is_sorted(arr: StaticArray) -> int:
     """
     TODO: Write this implementation
     """
-    
+
 
 
 # ------------------- PROBLEM 7 - FIND_MODE -----------------------------------
