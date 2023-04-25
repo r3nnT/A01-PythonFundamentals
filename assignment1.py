@@ -39,22 +39,22 @@ def fizz_buzz(arr: StaticArray) -> StaticArray:
     """
 
     # Form a new array object with the length of the original
-    newArr = StaticArray(arr.length())
+    new_arr = StaticArray(arr.length())
 
     # Populate a new StaticArray object with contents of the original array
     for i in range(arr.length()):
-        newArr.set(i, arr.get(i))
+        new_arr.set(i, arr.get(i))
 
-    # Modify newArr object with these divisibility factors
+    # Modify new_arr object with these divisibility factors
     for i in range(arr.length()):
-        if abs(newArr.get(i)) % 3 == 0 and abs(newArr.get(i)) % 5 == 0:
-            newArr.set(i, "fizzbuzz")
-        elif abs(newArr.get(i)) % 5 == 0:
-            newArr.set(i, "buzz")
-        elif abs(newArr.get(i)) % 3 == 0:
-            newArr.set(i, "fizz")
+        if abs(new_arr.get(i)) % 3 == 0 and abs(new_arr.get(i)) % 5 == 0:
+            new_arr.set(i, "fizzbuzz")
+        elif abs(new_arr.get(i)) % 5 == 0:
+            new_arr.set(i, "buzz")
+        elif abs(new_arr.get(i)) % 3 == 0:
+            new_arr.set(i, "fizz")
 
-    return newArr
+    return new_arr
 
 
 # ------------------- PROBLEM 3 - REVERSE -----------------------------------
@@ -81,7 +81,7 @@ def rotate(arr: StaticArray, steps: int) -> StaticArray:
 
     # Variables used to determine length, the new array and steps
     length = arr.length()
-    newArr = StaticArray(length)
+    new_arr = StaticArray(length)
     steps = steps % length
 
     # For loop to rotate the array
@@ -90,9 +90,9 @@ def rotate(arr: StaticArray, steps: int) -> StaticArray:
             temp = (i + steps) % length
         else:
             temp = (i + steps + length) % length
-        newArr[temp] = arr[i]
+        new_arr[temp] = arr[i]
 
-    return newArr
+    return new_arr
 
 
 # ------------------- PROBLEM 5 - SA_RANGE ----------------------------------
@@ -180,23 +180,58 @@ def find_mode(arr: StaticArray) -> (int, int):
     return mode, max
 
 
-
-
-
 # ------------------- PROBLEM 8 - REMOVE_DUPLICATES -------------------------
 
 def remove_duplicates(arr: StaticArray) -> StaticArray:
     """
-    TODO: Write this implementation
+    Receives a StaticArray that is already sorted. Returns a new StaticArray
+    with all duplicate values removed
     """
-    pass
+    
+    # Initialize the length and new StaticArray
+    length = arr.length()
+    new_arr = StaticArray(length)
+    
+    # Keep track of the last special value
+    last_value = arr[0]
+
+    # Add first element to the new array
+    new_arr[0] = arr[0]
+
+    # Loop through the remaining values in the array
+    for i in range(length):
+
+        # If the current element is different than the last_value
+        # add it the new array and update the last_value
+        if arr[i] != last_value:
+            new_arr[i] = arr[i]
+            last_value = arr[i]
+
+    # Loop through to determine the amount of non-None elements
+    none_count = 0
+    for i in range(new_arr.length()):
+        if new_arr[i] is not None:
+            none_count += 1
+
+    # New StaticArray that will hold all unique values
+    final_array = StaticArray(none_count)
+    j = 0
+
+    # Add unique values to the final array
+    for i in range(new_arr.length()):
+        if new_arr[i] is not None:
+            final_array[j] = new_arr[i]
+            j += 1
+
+    return final_array
 
 
 # ------------------- PROBLEM 9 - COUNT_SORT --------------------------------
 
 def count_sort(arr: StaticArray) -> StaticArray:
     """
-    TODO: Write this implementation
+    Receives a StaticArray and returns a new StaticArray with the same
+    content sorted in non-ascending order, using the count sort algorithm
     """
     pass
 
