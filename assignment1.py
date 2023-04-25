@@ -233,16 +233,58 @@ def count_sort(arr: StaticArray) -> StaticArray:
     Receives a StaticArray and returns a new StaticArray with the same
     content sorted in non-ascending order, using the count sort algorithm
     """
-    pass
+
+    length = arr.length()
+    max_val = arr[0]
+    min_val = arr[0]
+    for i in range(length):
+        if arr[i] > max_val:
+            max_val = arr[i]
+        if arr[i] < min_val:
+            min_val = arr[i]
+
+    # Create the count array
+    count_arr = [0] * (max_val - min_val + 1)
+    for i in range(length):
+        count_arr[max_val - arr[i]] += 1
+
+    # Modify the count array to contain the ending positions of the values
+    for i in range(1, len(count_arr)):
+        count_arr[i] += count_arr[i - 1]
+
+    # Create the sorted array
+    sorted_arr = [0] * length
+    for i in range(length - 1, -1, -1):
+        sorted_arr[count_arr[max_val - arr[i]] - 1] = arr[i]
+        count_arr[max_val - arr[i]] -= 1
+
+    return sorted_arr
 
 
 # ------------------- PROBLEM 10 - TRANSFORM_STRING ---------------------------
 
 def transform_string(source: str, s1: str, s2: str) -> str:
     """
-    TODO: Write this implementation
+    Returns a modified string that is the same length as source.
+    The ouput string must follow a certain set of rules
     """
-    pass
+
+    # Creates a dict that determines the route from s1 to s2
+    directions = dict(
+        zip(s1, s2))
+    product = ""
+    for value in source:
+        if value in directions:
+            product += directions[value]
+        elif value.isupper():
+            product += " "
+        elif value.islower():
+            product += "#"
+        elif value.isdigit():
+            product += "!"
+        else:
+            product += "="
+    return product
 
 
 # ------------------- BASIC TESTING -----------------------------------------
