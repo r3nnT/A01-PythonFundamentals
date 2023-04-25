@@ -266,24 +266,25 @@ def count_sort(arr: StaticArray) -> StaticArray:
 def transform_string(source: str, s1: str, s2: str) -> str:
     """
     Returns a modified string that is the same length as source.
-    The ouput string must follow a certain set of rules
+    The output string must follow a certain set of rules
     """
 
-    # Creates a dict that determines the route from s1 to s2
-    directions = dict(
-        zip(s1, s2))
-    product = ""
-    for value in source:
-        if value in directions:
-            product += directions[value]
-        elif value.isupper():
-            product += " "
-        elif value.islower():
-            product += "#"
-        elif value.isdigit():
-            product += "!"
+    # Creates an empty string to store the modified characters
+    product = ''
+
+    # Loop through each character in the string
+    for char in source:
+        if char in s1:
+            product += s2[s1.index(char)]
+        elif char.isupper():
+            product += ' '
+        elif char.islower():
+            product += '#'
+        elif char.isdigit():
+            product += '!'
         else:
-            product += "="
+            product += '='
+
     return product
 
 
