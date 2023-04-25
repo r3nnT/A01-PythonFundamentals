@@ -117,7 +117,6 @@ def sa_range(start: int, end: int) -> StaticArray:
         else:
             arr[i] = start - i
 
-
     return arr
 
 
@@ -125,18 +124,63 @@ def sa_range(start: int, end: int) -> StaticArray:
 
 def is_sorted(arr: StaticArray) -> int:
     """
-    TODO: Write this implementation
+    Returns an integer that describes whether the array
+    is sorted
     """
 
+    # Set variables for length and order
+    length = arr.length()
+    order = 0
+
+    # Return 1 if the length of the array is 1
+    if length <= 1:
+        return 1
+
+    # Check to see if the array is sorted in a certain order
+    for i in range(1,length):
+        if arr[i] > arr[i-1]:
+            if order == -1:
+                return 0
+            order = 1
+        elif arr[i] < arr[i-1]:
+            if order == 1:
+                return 0
+            order = -1
+        elif arr[i] == arr[i-1]:
+            return 0
+
+    return order
 
 
 # ------------------- PROBLEM 7 - FIND_MODE -----------------------------------
 
 def find_mode(arr: StaticArray) -> (int, int):
     """
-    TODO: Write this implementation
+    Recieves a StaticArray in sorted order. Returns the mode and how
+    many times in occurd in the array
     """
-    pass
+
+    # Initialize variables
+    mode = None
+    max = 0
+    length = arr.length()
+
+    # Loop to determine how many times a certain index occurs
+    for i in range(length):
+        count = 0
+        for j in range(length):
+            if arr[j] == arr[i]:
+                count += 1
+
+        # Checks if the current count is bigger than the max
+        if count > max:
+            max = count
+            mode = arr[i]
+
+    return mode, max
+
+
+
 
 
 # ------------------- PROBLEM 8 - REMOVE_DUPLICATES -------------------------
